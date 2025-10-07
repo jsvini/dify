@@ -27,6 +27,7 @@ services:
     networks:
       - ssrf_proxy_network
       - default
+      - dokploy-network
 
   # worker service
   # The Celery worker for processing the queue.
@@ -100,6 +101,10 @@ services:
       ENABLE_WEBSITE_JINAREADER: ${ENABLE_WEBSITE_JINAREADER:-true}
       ENABLE_WEBSITE_FIRECRAWL: ${ENABLE_WEBSITE_FIRECRAWL:-true}
       ENABLE_WEBSITE_WATERCRAWL: ${ENABLE_WEBSITE_WATERCRAWL:-true}
+    networks:
+      - ssrf_proxy_network
+      - default
+      - dokploy-network
   # The postgres database.
   db:
     image: postgres:15-alpine
@@ -329,6 +334,7 @@ services:
     networks:
       - ssrf_proxy_network
       - default
+      - dokploy-network
 
   # The Weaviate vector store.
   weaviate:
