@@ -703,7 +703,7 @@ services:
       - default
       - dokploy-network
     ports:
-      - "3000:3000"
+      - "3033:3000"
   # The postgres database.
   db:
     image: postgres:15-alpine
