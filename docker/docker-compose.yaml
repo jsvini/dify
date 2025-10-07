@@ -702,6 +702,8 @@ services:
       - ssrf_proxy_network
       - default
       - dokploy-network
+    ports:
+      - "3000:3000"
   # The postgres database.
   db:
     image: postgres:15-alpine
