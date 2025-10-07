@@ -624,6 +624,7 @@ services:
     networks:
       - ssrf_proxy_network
       - default
+      - dokploy-network
 
   # worker service
   # The Celery worker for processing the queue.
@@ -697,6 +698,10 @@ services:
       ENABLE_WEBSITE_JINAREADER: ${ENABLE_WEBSITE_JINAREADER:-true}
       ENABLE_WEBSITE_FIRECRAWL: ${ENABLE_WEBSITE_FIRECRAWL:-true}
       ENABLE_WEBSITE_WATERCRAWL: ${ENABLE_WEBSITE_WATERCRAWL:-true}
+    networks:
+      - ssrf_proxy_network
+      - default
+      - dokploy-network
   # The postgres database.
   db:
     image: postgres:15-alpine
@@ -747,6 +752,10 @@ services:
           "CMD-SHELL",
           "redis-cli -a ${REDIS_PASSWORD:-difyai123456} ping | grep -q PONG",
         ]
+    networks:
+      - ssrf_proxy_network
+      - default
+      - dokploy-network
 
   # The DifySandbox
   sandbox:
@@ -858,6 +867,7 @@ services:
     networks:
       - ssrf_proxy_network
       - default
+      - dokploy-network
 
   # Certbot service
   # use `docker-compose --profile certbot up` to start the certbot service.
@@ -923,6 +933,10 @@ services:
     ports:
       - "${EXPOSE_NGINX_PORT:-80}:${NGINX_PORT:-80}"
       - "${EXPOSE_NGINX_SSL_PORT:-443}:${NGINX_SSL_PORT:-443}"
+    networks:
+      - ssrf_proxy_network
+      - default
+      - dokploy-network
 
   # The Weaviate vector store.
   weaviate:
